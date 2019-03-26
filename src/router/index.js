@@ -25,124 +25,90 @@ import Layout from '../views/layout/Layout'
 export const constantRouterMap = [
   { path: '/login', component: () => import('@/views/login/index'), hidden: true },
   { path: '/404', component: () => import('@/views/404'), hidden: true },
-
+  // shouye
   {
-    path: '/',
+    path: '',
     component: Layout,
-    redirect: '/dashboard',
-    name: '新闻公告发布系统',
-    hidden: true,
-    children: [{
-      path: 'dashboard',
-      component: () => import('@/views/dashboard/index')
-    }]
+    redirect: 'dashboard',
+    hidden: false,
+    children: [
+      {
+        path: 'dashboard',
+        component: () => import('@/views/dashboard/index'),
+        name: 'Dashboard',
+        meta: { title: '首页', icon: 'dashboard', noCache: true, affix: true, breadcrumb: false }
+      }
+    ]
   },
-
   {
     path: '/example',
     component: Layout,
-    redirect: '/example/table',
-    name: '信息管理',
-    meta: { title: '信息管理', icon: 'example' },
-    children: [
-      {
-        path: 'table',
-        name: 'Table',
-        component: () => import('@/views/table/index'),
-        meta: { title: 'Table', icon: 'table' }
-      },
-      {
-        path: 'tree',
-        name: 'Tree',
-        component: () => import('@/views/tree/index'),
-        meta: { title: 'Tree', icon: 'tree' }
-      }
-    ]
-  },
-
-  {
-    path: '/form',
-    component: Layout,
-    children: [
-      {
-        path: 'index',
-        name: '发表公告',
-        component: () => import('@/views/form/index'),
-        meta: { title: '发表公告', icon: 'form' }
-      }
-    ]
-  },
-
-  {
-    path: '/nested',
-    component: Layout,
-    redirect: '/nested/menu1',
-    name: '消息查询',
+    redirect: '/example/list',
+    name: 'Example',
     meta: {
-      title: '消息查询',
-      icon: 'nested'
+      title: 'example',
+      icon: 'example'
     },
     children: [
       {
-        path: 'menu1',
-        component: () => import('@/views/nested/menu1/index'), // Parent router-view
-        name: 'Menu1',
-        meta: { title: 'Menu1' },
-        children: [
-          {
-            path: 'menu1-1',
-            component: () => import('@/views/nested/menu1/menu1-1'),
-            name: 'Menu1-1',
-            meta: { title: 'Menu1-1' }
-          },
-          {
-            path: 'menu1-2',
-            component: () => import('@/views/nested/menu1/menu1-2'),
-            name: 'Menu1-2',
-            meta: { title: 'Menu1-2' },
-            children: [
-              {
-                path: 'menu1-2-1',
-                component: () => import('@/views/nested/menu1/menu1-2/menu1-2-1'),
-                name: 'Menu1-2-1',
-                meta: { title: 'Menu1-2-1' }
-              },
-              {
-                path: 'menu1-2-2',
-                component: () => import('@/views/nested/menu1/menu1-2/menu1-2-2'),
-                name: 'Menu1-2-2',
-                meta: { title: 'Menu1-2-2' }
-              }
-            ]
-          },
-          {
-            path: 'menu1-3',
-            component: () => import('@/views/nested/menu1/menu1-3'),
-            name: 'Menu1-3',
-            meta: { title: 'Menu1-3' }
-          }
-        ]
+        path: 'create',
+        component: () => import('@/views/example/create'),
+        name: 'CreateArticle',
+        meta: { title: '发布新闻', icon: 'edit' }
       },
       {
-        path: 'menu2',
-        component: () => import('@/views/nested/menu2/index'),
-        meta: { title: 'menu2' }
+        path: 'edit/:id(\\d+)',
+        component: () => import('@/views/example/edit'),
+        name: 'EditArticle',
+        meta: { title: '编辑新闻', noCache: true },
+        hidden: true
       }
+      // {
+      //   path: 'list',
+      //   component: () => import('@/views/example/list'),
+      //   name: 'ArticleList',
+      //   meta: { title: '新闻列表', icon: 'list' }
+      // }
     ]
   },
+  // {
+  //   path: 'newList',
+  //   component: Layout,
+  //   redirect: '/listTable/newList',
+  //   name: '新闻列表',
+  //   hidden: true,
+  //   children: [{
+  //     path: 'InlineEditTable',
+  //     component: () => import('@/views/listTable/newList')
+  //   }]
+  // },
+  // {
+  //   path: 'listTable',
+  //   component: Layout,
+  //   redirect: '/listTable/newList',
+  //   hidden: false,
+  //   children: [
+  //     {
+  //       path: 'InlineEditTable',
+  //       component: () => import('@/views/listTable/newList'),
+  //       name: 'InlineEditTable',
+  //       meta: { title: '新闻列表', icon: 'list' }
+  //     }
+  //   ]
+  // },
 
   {
-    path: 'external-link',
+    path: 'listTable',
+    hidden: false,
     component: Layout,
-    children: [
-      {
-        path: 'http://www.gopoint.cn/.cn',
-        meta: { title: '高品计量', icon: 'link' }
-      }
-    ]
-  },
-
-  { path: '*', redirect: '/404', hidden: true }
+    children: [{
+      path: 'newList',
+      component: () => import('@/views/listTable/newList'),
+      name: 'InlineEditTable',
+      meta: { title: '新闻列表', icon: 'list' }
+    }]
+  }
+  // { path: '*', redirect: '/404', hidden: true }
 ]
 
 export default new Router({
