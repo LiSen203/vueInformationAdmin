@@ -46,7 +46,7 @@ export const constantRouterMap = [
     redirect: '/example/list',
     name: 'Example',
     meta: {
-      title: 'example',
+      title: '新闻管理',
       icon: 'example'
     },
     children: [
@@ -62,51 +62,56 @@ export const constantRouterMap = [
         name: 'EditArticle',
         meta: { title: '编辑新闻', noCache: true },
         hidden: true
+      },
+      {
+        path: 'list',
+        component: () => import('@/views/example/list'),
+        name: 'ArticleList',
+        meta: { title: '新闻列表', icon: 'list' }
       }
-      // {
-      //   path: 'list',
-      //   component: () => import('@/views/example/list'),
-      //   name: 'ArticleList',
-      //   meta: { title: '新闻列表', icon: 'list' }
-      // }
     ]
   },
-  // {
-  //   path: 'newList',
-  //   component: Layout,
-  //   redirect: '/listTable/newList',
-  //   name: '新闻列表',
-  //   hidden: true,
-  //   children: [{
-  //     path: 'InlineEditTable',
-  //     component: () => import('@/views/listTable/newList')
-  //   }]
-  // },
-  // {
-  //   path: 'listTable',
-  //   component: Layout,
-  //   redirect: '/listTable/newList',
-  //   hidden: false,
-  //   children: [
-  //     {
-  //       path: 'InlineEditTable',
-  //       component: () => import('@/views/listTable/newList'),
-  //       name: 'InlineEditTable',
-  //       meta: { title: '新闻列表', icon: 'list' }
-  //     }
-  //   ]
-  // },
-
   {
-    path: 'listTable',
+    path: '/listTable',
     hidden: false,
     component: Layout,
     children: [{
-      path: 'newList',
-      component: () => import('@/views/listTable/newList'),
+      path: 'newsList',
+      component: () => import('@/views/listTable/newsList'),
       name: 'InlineEditTable',
-      meta: { title: '新闻列表', icon: 'list' }
+      meta: { title: '新闻管理', icon: 'list' }
     }]
+  },
+  {
+    path: '/userAdmin',
+    component: Layout,
+    redirect: '/userAdmin/user',
+    name: 'useradmin',
+    meta: {
+      title: '用户管理',
+      icon: 'user'
+    },
+    children: [
+      {
+        path: 'create',
+        component: () => import('@/views/userAdmin/createuser'),
+        name: 'CreateArticle',
+        meta: { title: '新增用户', icon: 'edit' }
+      },
+      {
+        path: 'edit/:id(\\d+)',
+        component: () => import('@/views/userAdmin/edituser'),
+        name: 'EditArticle',
+        meta: { title: '修改用户信息', noCache: true },
+        hidden: true
+      },
+      {
+        path: 'list',
+        component: () => import('@/views/userAdmin/listuser'),
+        name: 'ArticleList',
+        meta: { title: '用户列表', icon: 'list' }
+      }
+    ]
   }
   // { path: '*', redirect: '/404', hidden: true }
 ]
