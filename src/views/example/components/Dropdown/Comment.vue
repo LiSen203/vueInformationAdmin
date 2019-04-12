@@ -6,7 +6,7 @@
     </el-button>
     <el-dropdown-menu slot="dropdown" class="no-padding">
       <el-dropdown-item>
-        <el-radio-group v-model="comment_disabled" style="padding: 10px;">
+        <el-radio-group v-model="comment_disabled" style="padding:10px;">
           <el-radio :label="true">
             关闭评论
           </el-radio>

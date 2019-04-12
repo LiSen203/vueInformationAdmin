@@ -122,19 +122,19 @@ export default {
       }
     }
     const validateSourceUri = (rule, value, callback) => {
-      if (value) {
-        if (validURL(value)) {
-          callback()
-        } else {
-          this.$message({
-            message: '外链url填写不正确',
-            type: 'error'
-          })
-          callback(new Error('外链url填写不正确'))
-        }
-      } else {
-        callback()
-      }
+      // if (value) {
+      //   if (validURL(value)) {
+      //     callback()
+      //   } else {
+      //     this.$message({
+      //       message: '外链url填写不正确',
+      //       type: 'error'
+      //     })
+      //     callback(new Error('外链url填写不正确'))
+      //   }
+      // } else {
+      //   callback()
+      // }
     }
     return {
       postForm: Object.assign({}, defaultForm),

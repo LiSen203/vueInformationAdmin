@@ -36,9 +36,21 @@ export const constantRouterMap = [
         path: 'dashboard',
         component: () => import('@/views/dashboard/index'),
         name: 'Dashboard',
-        meta: { title: '首页', icon: 'dashboard', noCache: true, affix: true, breadcrumb: false }
+        meta: { title: '首页', icon: 'home', noCache: true, affix: true, breadcrumb: false }
       }
     ]
+  },
+  // 新闻查询路由菜单
+  {
+    path: '/listTable',
+    hidden: false,
+    component: Layout,
+    children: [{
+      path: 'newsList',
+      component: () => import('@/views/listTable/newsList'),
+      name: 'InlineEditTable',
+      meta: { title: '新闻查询', icon: 'search' }
+    }]
   },
   {
     path: '/example',
@@ -54,13 +66,13 @@ export const constantRouterMap = [
         path: 'create',
         component: () => import('@/views/example/create'),
         name: 'CreateArticle',
-        meta: { title: '发布新闻', icon: 'edit' }
+        meta: { title: '添加新闻', icon: 'edit' }
       },
       {
         path: 'edit/:id(\\d+)',
         component: () => import('@/views/example/edit'),
         name: 'EditArticle',
-        meta: { title: '编辑新闻', noCache: true },
+        meta: { title: '修改新闻', noCache: true },
         hidden: true
       },
       {
@@ -70,17 +82,6 @@ export const constantRouterMap = [
         meta: { title: '新闻列表', icon: 'list' }
       }
     ]
-  },
-  {
-    path: '/listTable',
-    hidden: false,
-    component: Layout,
-    children: [{
-      path: 'newsList',
-      component: () => import('@/views/listTable/newsList'),
-      name: 'InlineEditTable',
-      meta: { title: '新闻管理', icon: 'list' }
-    }]
   },
   {
     path: '/userAdmin',
@@ -119,5 +120,5 @@ export const constantRouterMap = [
 export default new Router({
   // mode: 'history', //后端支持可开
   scrollBehavior: () => ({ y: 0 }),
-  routes: constantRouterMap
+  routes: constantRouterMap 
 })
