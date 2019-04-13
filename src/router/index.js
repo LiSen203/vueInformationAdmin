@@ -40,18 +40,50 @@ export const constantRouterMap = [
       }
     ]
   },
-  // 新闻查询路由菜单
   {
-    path: '/listTable',
-    hidden: false,
+    path: '/sysAdmin',
     component: Layout,
-    children: [{
-      path: 'newsList',
-      component: () => import('@/views/listTable/newsList'),
-      name: 'InlineEditTable',
-      meta: { title: '新闻查询', icon: 'search' }
-    }]
+    redirect: '/sysAdmin/user',
+    name: 'useradmin',
+    meta: {
+      title: '系统管理',
+      icon: 'user'
+    },
+    children: [
+      {
+        path: 'create',
+        component: () => import('@/views/sysAdmin/createuser'),
+        name: 'CreateArticle',
+        meta: { title: '用户管理', icon: 'edit' }
+      },
+      {
+        path: 'edit/:id(\\d+)',
+        component: () => import('@/views/sysAdmin/edituser'),
+        name: 'EditArticle',
+        meta: { title: '修改用户信息', noCache: true },
+        hidden: true
+      },
+      {
+        path: 'list',
+        component: () => import('@/views/sysAdmin/listuser'),
+        name: 'ArticleList',
+        meta: { title: '用户列表', icon: 'list' }
+      }
+    ]
   },
+  // { path: '*', redirect: '/404', hidden: true }
+  // 新闻查询路由菜单
+  // {
+  //   path: '/listTable',
+  //   hidden: false,
+  //   component: Layout;
+  //   children: [{
+  //     path: 'newsList',
+  //     component: () => import('@/views/listTable/newsList'),
+  //     name: 'InlineEditTable',
+  //     meta: { title: '新闻查询', icon: 'search' }
+  //   }]
+  // },
   {
     path: '/example',
     component: Layout,
@@ -64,59 +96,32 @@ export const constantRouterMap = [
     children: [
       {
         path: 'create',
-        component: () => import('@/views/example/create'),
+        component: () => import('@/views/newsAdmin/create'),
         name: 'CreateArticle',
         meta: { title: '添加新闻', icon: 'edit' }
       },
       {
         path: 'edit/:id(\\d+)',
-        component: () => import('@/views/example/edit'),
+        component: () => import('@/views/newsAdmin/edit'),
         name: 'EditArticle',
         meta: { title: '修改新闻', noCache: true },
         hidden: true
       },
       {
         path: 'list',
-        component: () => import('@/views/example/list'),
+        component: () => import('@/views/newsAdmin/list'),
         name: 'ArticleList',
         meta: { title: '新闻列表', icon: 'list' }
+      },
+      {
+        path: 'searcList',
+        component: () => import('@/views/newsAdmin/searcList'),
+        name: 'ComplexTable',
+        meta: { title: '新闻查询', icon: 'search' }
       }
     ]
   },
-  {
-    path: '/userAdmin',
-    component: Layout,
-    redirect: '/userAdmin/user',
-    name: 'useradmin',
-    meta: {
-      title: '用户管理',
-      icon: 'user'
-    },
-    children: [
-      {
-        path: 'create',
-        component: () => import('@/views/userAdmin/createuser'),
-        name: 'CreateArticle',
-        meta: { title: '新增用户', icon: 'edit' }
-      },
-      {
-        path: 'edit/:id(\\d+)',
-        component: () => import('@/views/userAdmin/edituser'),
-        name: 'EditArticle',
-        meta: { title: '修改用户信息', noCache: true },
-        hidden: true
-      },
-      {
-        path: 'list',
-        component: () => import('@/views/userAdmin/listuser'),
-        name: 'ArticleList',
-        meta: { title: '用户列表', icon: 'list' }
-      }
-    ]
-  }
-  // { path: '*', redirect: '/404', hidden: true }
 ]
-
 export default new Router({
   // mode: 'history', //后端支持可开
   scrollBehavior: () => ({ y: 0 }),
