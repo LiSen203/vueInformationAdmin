@@ -1,35 +1,22 @@
-/* 
- * ÓÃ»§¹ÜÀíÄ£¿é
- */
+import Mock from 'mockjs'
 
-// ±£´æ
-export function save() {
-  return {
-    url: 'http://localhost:8080/user/save',
-    type: 'post',
-    data: {
-      "code": 200,
-      "msg": null,
-      "data": 1
+const role = ['ç®¡ç†å‘˜', 'è¶…çº§ç®¡ç†å‘˜', 'ç¼–è¾‘å‘˜']
+const userList = Mock.mock({
+  'user|100': [
+    { id: '@increment()', name: '@cname', compnay: '@province', email: '@email()', phone: '@ip', 'role|1': role }
+  ]
+})
+
+export default {
+  UserList: config => {
+    const { page = 1, pageSize = 15, id } = JSON.parse(config.body)
+    const list = userList
+    let pageList = list.user.filter((item, index) => index < pageSize * page && index >= pageSize * (page - 1))
+    if (id) pageList = pageList.filter(item => item.id !== id)
+    return {
+      total: list.user.length,
+      list: pageList,
+      code: 0
     }
-  }
-}// É¾³ý
-export function del() {
-  return {
-    url: 'http://localhost:8080/user/delete',
-    type: 'post',
-    data: {
-      "code": 200,
-      "msg": null,
-      "data": 1
-    }
-  }
-}
-// ·ÖÒ³²éÑ¯
-export function findPage() {
-  return {
-    url: 'http://localhost:8080/user/findPage',
-    type: 'post',
-    data: findPageData
   }
 }

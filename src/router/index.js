@@ -59,7 +59,7 @@ export const constantRouterMap = [
       {
         path: 'edit/:id(\\d+)',
         component: () => import('@/views/sys/edituser'),
-        name: 'EditArticle',
+        name: 'EditArticles',
         meta: { title: '修改用户信息', noCache: true },
         hidden: true
       },
@@ -84,7 +84,7 @@ export const constantRouterMap = [
       {
         path: 'create',
         component: () => import('@/views/newsAdmin/create'),
-        name: 'CreateArticle',
+        name: 'CreateArticles',
         meta: { title: '添加新闻', icon: 'edit' }
       },
       {
@@ -97,7 +97,7 @@ export const constantRouterMap = [
       {
         path: 'list',
         component: () => import('@/views/newsAdmin/list'),
-        name: 'ArticleList',
+        name: 'ArticleLists',
         meta: { title: '新闻列表', icon: 'list' }
       },
       {
