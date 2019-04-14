@@ -41,9 +41,9 @@ export const constantRouterMap = [
     ]
   },
   {
-    path: '/sysAdmin',
+    path: '/sys',
     component: Layout,
-    redirect: '/sysAdmin/user',
+    redirect: '/sys/user',
     name: 'useradmin',
     meta: {
       title: '系统管理',
@@ -51,44 +51,31 @@ export const constantRouterMap = [
     },
     children: [
       {
-        path: 'create',
-        component: () => import('@/views/sysAdmin/createuser'),
+        path: 'User',
+        component: () => import('@/views/sys/User'),
         name: 'CreateArticle',
-        meta: { title: '用户管理', icon: 'edit' }
+        meta: { title: '用户管理', icon: 'user' }
       },
       {
         path: 'edit/:id(\\d+)',
-        component: () => import('@/views/sysAdmin/edituser'),
+        component: () => import('@/views/sys/edituser'),
         name: 'EditArticle',
         meta: { title: '修改用户信息', noCache: true },
         hidden: true
       },
       {
         path: 'list',
-        component: () => import('@/views/sysAdmin/listuser'),
+        component: () => import('@/views/sys/listuser'),
         name: 'ArticleList',
-        meta: { title: '用户列表', icon: 'list' }
+        meta: { title: '角色权限', icon: 'list' }
       }
     ]
   },
-  // { path: '*', redirect: '/404', hidden: true }
-  // 新闻查询路由菜单
-  // {
-  //   path: '/listTable',
-  //   hidden: false,
-  //   component: Layout;
-  //   children: [{
-  //     path: 'newsList',
-  //     component: () => import('@/views/listTable/newsList'),
-  //     name: 'InlineEditTable',
-  //     meta: { title: '新闻查询', icon: 'search' }
-  //   }]
-  // },
   {
-    path: '/example',
+    path: '/newsAdmin',
     component: Layout,
-    redirect: '/example/list',
-    name: 'Example',
+    redirect: '/newsAdmin/list',
+    name: 'newsAdmin',
     meta: {
       title: '新闻管理',
       icon: 'example'
@@ -120,10 +107,10 @@ export const constantRouterMap = [
         meta: { title: '新闻查询', icon: 'search' }
       }
     ]
-  },
+  }
 ]
 export default new Router({
   // mode: 'history', //后端支持可开
   scrollBehavior: () => ({ y: 0 }),
-  routes: constantRouterMap 
+  routes: constantRouterMap
 })
