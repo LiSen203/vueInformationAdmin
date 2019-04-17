@@ -2,13 +2,13 @@
   <div class="list">
     <el-form inline>
       <el-form-item label="用户名">
-        <el-input v-model="search.username" placeholder="请输入用户名"></el-input>
+        <el-input v-model="search.username" placeholder="请输入用户名" size="medium" suffix-icon="el-icon-date"></el-input>
       </el-form-item>
       <el-form-item>
-        <el-button type="primary">搜索</el-button>
+        <el-button type="primary" size="medium" icon="el-icon-search">搜索</el-button>
       </el-form-item>
       <el-form-item>
-        <el-button type="primary">新增</el-button>
+        <el-button type="primary" size="medium" icon="el-icon-circle-plus" @click="add(item)">新增</el-button>
       </el-form-item>
     </el-form>
     <el-table v-loading="loading" :data="list" border>
@@ -21,13 +21,13 @@
       <el-table-column label="用户组" prop="role"></el-table-column>
       <el-table-column label="操作">
         <template slot-scope="scope">
-          <el-button size="mini" @click="edit(scope)">编辑</el-button>
-          <el-button size="mini" type="danger" @click="delItem(scope)">删除</el-button>
+          <el-button size="mini" icon="el-icon-edit" @click="edit(scope)">编辑</el-button>
+          <el-button size="mini" type="danger" icon="el-icon-delete" @click="delItem(scope)">删除</el-button>
         </template>
       </el-table-column>
     </el-table>
     <div class="page">
-      <el-button type="danger">批量删除</el-button>
+      <el-button type="danger" disabled="disabled">批量删除</el-button>
       <el-pagination
         :total="total"
         :page-size="param.pageSize"
@@ -39,14 +39,15 @@
 
     <el-dialog
       :visible.sync="dialogVisible"
-      title="提示"
-      width="30%">
+      title="编辑"
+      width="30%"
+      center>
       <el-form label-width="60px">
         <el-form-item label="用户名">
           <el-input v-model="item.name"></el-input>
         </el-form-item>
         <el-form-item label="密码">
-          <el-input v-model="item.password"></el-input>
+          <el-input v-model="item.password" auto-complete="off" type="password"></el-input>
         </el-form-item>
         <el-form-item label="机构">
           <el-input v-model="item.compnay"></el-input>
@@ -60,11 +61,41 @@
         <el-form-item label="角色">
           <el-input v-model="item.role"></el-input>
         </el-form-item>
-        <el-form-item>
-          <el-button>取消</el-button>
-          <el-button type="primary">确定</el-button>
+      </el-form>
+      <span slot="footer" class="dialog-footer">
+        <el-button>取消</el-button>
+        <el-button type="primary">确定</el-button>
+      </span>
+    </el-dialog>
+    <el-dialog
+      :visible.sync="dialogADD"
+      title="新增"
+      width="30%"
+      center>
+      <el-form label-width="60px">
+        <el-form-item label="用户名">
+          <el-input></el-input>
+        </el-form-item>
+        <el-form-item label="密码">
+          <el-input auto-complete="off" type="password"></el-input>
+        </el-form-item>
+        <el-form-item label="机构">
+          <el-input></el-input>
+        </el-form-item>
+        <el-form-item label="邮箱">
+          <el-input></el-input>
+        </el-form-item>
+        <el-form-item label="手机">
+          <el-input></el-input>·
+        </el-form-item>
+        <el-form-item label="角色">
+          <el-input></el-input>
         </el-form-item>
       </el-form>
+      <span slot="footer" class="dialog-footer">
+        <el-button @click="dialogADD=false">取消</el-button>
+        <el-button type="primary">提交</el-button>
+      </span>
     </el-dialog>
 
   </div>
@@ -79,6 +110,7 @@ export default {
     return {
       list: [],
       dialogVisible: false,
+      dialogADD: false,
       loading: false,
       item: {},
       total: 0,
@@ -109,8 +141,10 @@ export default {
     },
     edit(item) {
       this.item = item.row
-      this.item.password = ''
       this.dialogVisible = true
+    },
+    add(item) {
+      this.dialogADD = true
     },
     handleClose() {},
     delItem(item) {
@@ -134,9 +168,7 @@ export default {
     }
   }
 }
-
 </script>
-
 <style>
 .list {
     margin: 15px;

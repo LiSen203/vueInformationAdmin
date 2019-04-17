@@ -36,15 +36,14 @@ export const constantRouterMap = [
         path: 'dashboard',
         component: () => import('@/views/dashboard/index'),
         name: 'Dashboard',
-        meta: { title: '首页', icon: 'home', noCache: true, affix: true, breadcrumb: false }
+        meta: { title: '首页', icon: 'dashboard', noCache: true, affix: true, breadcrumb: false }
       }
     ]
   },
   {
     path: '/sys',
     component: Layout,
-    redirect: '/sys/user',
-    name: 'useradmin',
+    redirect: '/sys/User',
     meta: {
       title: '系统管理',
       icon: 'user'
@@ -53,21 +52,14 @@ export const constantRouterMap = [
       {
         path: 'User',
         component: () => import('@/views/sys/User'),
-        name: 'CreateArticle',
+        name: 'UserList',
         meta: { title: '用户管理', icon: 'user' }
       },
       {
-        path: 'edit/:id(\\d+)',
-        component: () => import('@/views/sys/edituser'),
-        name: 'EditArticles',
-        meta: { title: '修改用户信息', noCache: true },
-        hidden: true
-      },
-      {
-        path: 'list',
-        component: () => import('@/views/sys/listuser'),
-        name: 'ArticleList',
-        meta: { title: '角色权限', icon: 'list' }
+        path: 'role',
+        component: () => import('@/views/sys/role'),
+        name: 'rolelist',
+        meta: { title: '角色权限', icon: 'user' }
       }
     ]
   },
@@ -75,7 +67,6 @@ export const constantRouterMap = [
     path: '/newsAdmin',
     component: Layout,
     redirect: '/newsAdmin/list',
-    name: 'newsAdmin',
     meta: {
       title: '新闻管理',
       icon: 'example'
@@ -84,20 +75,20 @@ export const constantRouterMap = [
       {
         path: 'create',
         component: () => import('@/views/newsAdmin/create'),
-        name: 'CreateArticles',
+        name: 'create',
         meta: { title: '添加新闻', icon: 'edit' }
       },
       {
         path: 'edit/:id(\\d+)',
         component: () => import('@/views/newsAdmin/edit'),
-        name: 'EditArticle',
+        name: 'EditForm',
         meta: { title: '修改新闻', noCache: true },
         hidden: true
       },
       {
         path: 'list',
         component: () => import('@/views/newsAdmin/list'),
-        name: 'ArticleLists',
+        name: 'ArticleList',
         meta: { title: '新闻列表', icon: 'list' }
       },
       {

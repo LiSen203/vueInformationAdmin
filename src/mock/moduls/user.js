@@ -3,10 +3,10 @@ import Mock from 'mockjs'
 const role = ['管理员', '超级管理员', '编辑员']
 const userList = Mock.mock({
   'user|100': [
-    { id: '@increment()', name: '@cname', compnay: '@province', email: '@email()', phone: '@ip', 'role|1': role }
+    { id: '@increment()', name: '@cname', compnay: '@province', email: '@email()', phone: '@ip', 'role|1': role, password: '@zip()' }
   ]
 })
-
+console.log(userList)
 export default {
   UserList: config => {
     const { page = 1, pageSize = 15, id } = JSON.parse(config.body)

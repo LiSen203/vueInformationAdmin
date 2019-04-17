@@ -23,3 +23,11 @@ export function delUser(data) {
     data
   })
 }
+
+export function roleList(data) {
+  return request({
+    url: '/role/rolelist',
+    method: 'post',
+    data
+  })
+}
