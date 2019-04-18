@@ -4,7 +4,6 @@ import tableAPI from './table'
 import articleAPI from './article'
 import UserAPI from './moduls/user'
 import RoleAPI from './moduls/role'
-// Fix an issue with setting withCredentials = true, cross-domain request lost cookies
 // https://github.com/nuysoft/Mock/issues/300
 Mock.XHR.prototype.proxy_send = Mock.XHR.prototype.send
 Mock.XHR.prototype.send = function() {
